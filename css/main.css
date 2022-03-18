@@ -843,19 +843,20 @@ select:focus {
 .leaf {
   background-image: url(/img/leaf.svg);
   position: absolute;
-  width: 500px;
-  height: 400px;
+  width: 800px;
+  height: 600px;
   background-size: 100%;
   background-repeat: no-repeat;
-  top: -50px;
-  left: -100px; }
+  top: 100px;
+  left: -200px;
+  transform: rotate(-90deg); }
 
 .leaf:first-child {
-  bottom: 0;
+  bottom: 80px;
   top: auto;
   left: auto;
-  right: -100px;
-  transform: rotate(180deg); }
+  right: -200px;
+  transform: rotate(90deg); }
 
 @media (min-width: 1700px) {
   .leaf.d-none {
