@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Assistant Demo</title>
+    <script src='/js/demo.js'></script>
+    <link rel="stylesheet" href='/css/demo.css''>
+  </head>
+  <body>
+    <div id="dimmer" class="dimmer">
+      <div class="loader">Loading</div>
+    </div>
+    <label for="txtareaInput">Insert text here</label>
+    <textarea id="txtareaInput" placeholder="Text to analysis"></textarea>
+    <label for="dropExpectedResult">Choose expected result</label>
+    <div class="buttons">
+      <select name="dropExpectedResult" id="dropExpectedResult">
+        <option value="opClassDiagram" selected>UML Class Diagram</option>
+        <option value="opSQL">SQL</option>
+      </select>
+      <button id="btnSend">Analyze</button>
+    </div>
+    <textarea id="txtareaOutput" placeholder="Result"></textarea>
+    <button id="btnCopy">Copy</button>
+    <a href="https://www.planttext.com/" target="_blank">Convert PlantUML text to image tool</a>
+    <br/>
+    <a href="https://forms.gle/V46v8CYyNVQZ4Vpb7" target="_blank">Feedback</a>
+  </body>
+</html>
