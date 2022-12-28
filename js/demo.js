@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let textareaOutput = document.getElementById('txtareaOutput');
 
     let licenseKey = 'd807b65a-440e-4728-a725-77455f20fc65';
-    let backend = 'http://ai-api.flexberry.net';
+    let backend = 'https://ai-api.flexberry.net';
 
     if (textToRecognize == null || textToRecognize == undefined || textToRecognize == '') {
       textareaOutput.textContent = 'No text was found for analysis';
