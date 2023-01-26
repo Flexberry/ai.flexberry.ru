@@ -48,7 +48,15 @@ document.addEventListener('DOMContentLoaded', function() {
               return;
             }
 
-            textareaOutput.textContent = data["RecognizedJson"];
+            textareaOutput.textContent = "";
+            if (selectedValue == 'opClassMockups') {
+              localStorage.setItem("RecognizedJson", data["RecognizedJson"]);
+              const recognizedJson = JSON.parse(data["RecognizedJson"]);
+              svgOutputFunction(recognizedJson);
+            } else {
+              textareaOutput.textContent = data["RecognizedJson"];
+            }
+            
             textareaOutput.classList.remove('error');
           });
         }
@@ -81,4 +89,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var copyButton = document.getElementById("btnCopy");
   copyButton.addEventListener('click', copyFunction, false); 
+
+  let svgOutputFunction = function(recognizedJson) {
+    const svgOutput = document.getElementById('svgOutput');
+
+    while(svgOutput.firstChild){
+      svgOutput.removeChild(svgOutput.firstChild);
+    }
+    
+    for (const key in recognizedJson) {
+      if (Object.hasOwnProperty.call(recognizedJson, key)) {
+        const element = recognizedJson[key];
+
+        const linkListForm = window.location.protocol + "//" + window.location.host + "/list-form.html?class=" + element.modelName;
+        const linkEditForm = window.location.protocol + "//" + window.location.host + "/edit-form.html?class=" + element.modelName;
+
+        const className = document.createElement('p');
+        className.textContent = element.className;
+
+        let link = document.createElement('a');
+        link.href = linkListForm;
+        link.target = "_blank";
+        link.textContent = "List form";
+
+        svgOutput.append(className);
+        svgOutput.append(link);
+        svgOutput.append(document.createElement('br'));
+        
+        link = document.createElement('a');
+        link.href = linkEditForm;
+        link.target = "_blank";
+        link.textContent = "Edit form";
+
+        svgOutput.append(link);
+      }
+    }
+  }
 }, false);

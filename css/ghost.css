@@ -1,0 +1,78 @@
+body{
+  margin: 0px;
+}
+
+.header-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  fill: rgb(59, 66, 86);
+}
+
+.header-svg{
+  width: 24px;
+  height: 24px;
+  stroke: rgb(59, 66, 86);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sitemap-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  fill: rgb(236, 242, 251);
+}
+
+.form-header-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  fill: rgb(59, 66, 86);
+}
+
+.toolbar-svg{
+  width: 48px;
+  height: 48px;
+  stroke: rgb(132, 142, 153);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.olv-title-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  fill: rgb(132, 142, 153);
+}
+
+.olv-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  fill: rgb(59, 66, 86);
+}
+
+.field-text{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  fill: rgb(132, 142, 153);
+}
+
+.field-svg{
+  width: 24px;
+  height: 24px;
+  stroke: #848E99;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
