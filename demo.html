@@ -1,31 +1,90 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>AI Assistant Demo</title>
     <script src='/js/demo.js'></script>
     <link rel="stylesheet" href='/css/demo.css''>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   </head>
   <body>
-    <div id="dimmer" class="dimmer">
-      <div class="loader">Loading</div>
+    <header><img src="img/logo.svg"/></header>
+    <div class="container">
+        <div id="dimmer" class="dimmer">
+            <div class="loader" id="dimmerloader">Loading</div>
+        </div>
+        <div id="description">
+            <div class="row">
+                <div class="col img-text-block"><img class="info-img logo" src="img/logo-only.svg">
+                    <p id="textDescription"></p>
+                    <img class="arrow arrow1" src="img/arrow1.svg"/></div>
+                <div class="col img-text-block analytic-block"><img class="info-img" src="img/analytic.svg">
+                    <p id="textDescriptionAnalytic"></p>
+                    <img class="arrow arrow2" src="img/arrow2.svg"/></div>
+                <div class="col img-text-block"><img class="info-img" src="img/ai.svg">
+                    <p id="textDescriptionAi"></p>
+                    <img class="arrow arrow3" src="img/arrow3.svg"/></div>
+                <div class="col btn-buy-block">
+                    <button id="btnBuy" class="open-popup btn-primary" href="#">Buy</button>
+                </div>
+            </div>
+        </div>
+        <h1 id="tryCaption"></h1>
+        <div class="row">
+            <div class="col">
+                <div class="text-block">
+                    <p id="textRequest"></p>
+                    <a id="tryTextStart" href="#tryText"></a>
+                    <p id="tryText" class="d-none"></p>
+                    <p id="tryTextEnd"></p>
+                    <img class="arrow arrow4" src="img/arrow4.svg" />
+                </div>
+            </div>
+            <div class="col">
+                <label for="txtareaInput" id="txtareaInputLabel">Insert text here</label>
+                <textarea id="txtareaInput" placeholder="Text to analysis"></textarea>
+                <label for="dropExpectedResult" id="expectedResultLabel">Choose expected result</label>
+                <div class="buttons">
+                    <select name="dropExpectedResult" id="dropExpectedResult">
+                        <option value="opClassMockups" id="opClassMockups" selected>Class Mockups</option>
+                        <option value="opClassDiagram" id="opClassDiagram">UML Class Diagram</option>
+                        <option value="opSQL" id="opSQL">SQL</option>
+                    </select>
+                    <button id="btnSend">Analyze</button>
+                </div>
+                <div id="svgOutput" class=></div>
+                <div id="textResult">
+                    <textarea id="txtareaOutput" placeholder="Result"></textarea>
+                    <button id="btnCopy">Copy</button>
+                </div>
+                <br />
+                <a href="https://www.planttext.com/" id="plantUmlLink" target="_blank">Convert PlantUML text to image tool</a>
+                <br />
+                <a href="https://forms.gle/V46v8CYyNVQZ4Vpb7" id="feedBackLink" target="_blank">Feedback</a>
+            </div>
+        </div>
     </div>
-    <label for="txtareaInput">Insert text here</label>
-    <textarea id="txtareaInput" placeholder="Text to analysis"></textarea>
-    <label for="dropExpectedResult">Choose expected result</label>
-    <div class="buttons">
-      <select name="dropExpectedResult" id="dropExpectedResult">
-        <option value="opClassDiagram" selected>UML Class Diagram</option>
-        <option value="opSQL">SQL</option>
-        <option value="opClassMockups">Class Mockups</option>
-      </select>
-      <button id="btnSend">Analyze</button>
-    </div>
-    <textarea id="txtareaOutput" placeholder="Result"></textarea>
-    <button id="btnCopy">Copy</button>
-    <div id="svgOutput" class=></div>
-    <br/>
-    <a href="https://www.planttext.com/" target="_blank">Convert PlantUML text to image tool</a>
-    <br/>
-    <a href="https://forms.gle/V46v8CYyNVQZ4Vpb7" target="_blank">Feedback</a>
+      <div class="popup__bg">
+          <div class="popup">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h2 class="modal-title" id="purchaseRequestTitle">Заявка на покупку</h2>
+                      <button type="button" class="close-popup" data-dismiss="modal" aria-label="Close" id="closePurchaseBtn">
+                          <img src="img/cross.svg" alt="close"/>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div id="purchaseRequestContent">
+                          <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script>
+                          <iframe id="purchaseFormRu" src="https://forms.yandex.ru/u/623b45e28f5882e94321d280/?iframe=1" frameborder="0" name="ya-form-623b45e28f5882e94321d280" width="100%" class=""></iframe>
+                          <iframe id="purchaseFormCom" src="https://forms.yandex.com/u/623ac0eae1900d5a090e3f89/?iframe=1" frameborder="0" name="ya-form-623ac0eae1900d5a090e3f89" width="100%" class=""></iframe>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </body>
 </html>
