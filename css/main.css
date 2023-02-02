@@ -102,10 +102,17 @@ p {
   width: 199px; }
 
 .btn {
-  border-radius: 20px 0 20px 0;
+  border-radius: 0;
   padding: 11px 15px 14px;
   line-height: 21px;
-  font-weight: 500; }
+  font-weight: 500;
+  min-width: 120px; }
+
+.buttons-list .btn-primary:first-child {
+  border-top-left-radius: 30px; }
+
+.buttons-list .btn-primary:last-child {
+  border-bottom-right-radius: 30px; }
 
 .btn-primary {
   background-color: #25D838;
@@ -214,8 +221,7 @@ p {
     height: 80px;
     background-color: #e9d5fd;
     position: absolute;
-    z-index: -1;
-    left: 13%; }
+    z-index: -1; }
   .worth-item h6 {
     margin-bottom: 20px;
     min-height: 42px; }
@@ -883,3 +889,7 @@ select:focus {
   border-radius: 3px;
   margin-bottom: 2em;
   box-shadow: 0px 0px 4px #303434; }
+
+@media (min-width: 992px) {
+  .modal-lg, .modal-xl {
+    max-width: 600px; } }
