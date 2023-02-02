@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
           insertbutton: "Текст для анализа",
           analyzeButton: "Анализировать",
           expectedResult: "Ожидаемый результат",
-          opSVG: "Эскизы форм",
+          opSVG: "Макеты форм",
           opClassDiagram: "UML диаграмма классов",
           opSQL: "SQL",
           txtareaOutput: "Результат",
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
               "Акт подключения составляется в двух экземплярах.Один экземпляр остаётся пользователю, второй экземпляр после внесения сведений в информационную систему мастер предоставляет в архив.Журнал архива содержит дату предоставления акта подключения, количество листов.Архивариус вносит сведения в информационную систему, где автоматически по номеру в журнал архива добавляется ссылка на акт подключения.",
           textDescription: "Flexberry AI Assistant – инструмент, который помогает облегчить рутинную работу бизнес-аналитика и других специалистов (например, дизайнера интерфейсов). ",
           textDescriptionAnalytic: "Flexberry AI Assistant обучен анализировать текстовые описания, которые бизнес-аналитик собирает в процессе общения с клиентами и исполнителями. ",
-          textDescriptionAi: "Flexberry AI Assistant анализирует входной текст и отображает результат требуемого типа (эскиз форм, UML диаграмма классов или скрипт SQL).",
+          textDescriptionAi: "Flexberry AI Assistant анализирует входной текст и отображает результат требуемого типа (макеты форм, UML диаграмма классов или скрипт SQL).",
           textRequest: "Мы развиваем наш продукт и он постепенно осваивает разные выражения. Проверим, найдём ли мы с вами общий язык уже сейчас или нам надо ещё немного поучиться?",
           purchaseFormTitle: "Заявка на покупку"
       };
@@ -213,10 +213,10 @@ let copyFunction = function() {
   var purchaseCloseButton = document.getElementById('closePurchaseBtn');
   purchaseCloseButton.addEventListener('click', (e) => {
       popupBg.classList.remove('active'); // Убираем активный класс с фона.
-      popup.classList.remove('active'); // И с окна..
+      popup.classList.remove('active'); // И с окна.
   });
 
-  document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
+  document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ.
       if (e.target === popupBg) { // Если цель клика - фот, то:
           popupBg.classList.remove('active'); // Убираем активный класс с фона.
           popup.classList.remove('active'); // И с окна.
@@ -241,12 +241,12 @@ let svgOutputFunction = function(recognizedJson) {
       const linkEditForm = window.location.protocol + "//" + window.location.host + "/edit-form.html?class=" + element.modelName;
 
       const className = document.createElement('p');
-      className.textContent = element.className;
+      className.textContent = element.className.charAt(0).toUpperCase() + element.className.slice(1).replace(/([A-ZА-ЯЁ])/g, " $1").toLowerCase();
 
       let link = document.createElement('a');
       link.href = linkListForm;
       link.target = "_blank";
-      link.textContent = "List form";
+      link.textContent = aiaLocalization.listForm;
 
       svgOutput.append(className);
       svgOutput.append(link);
@@ -255,7 +255,7 @@ let svgOutputFunction = function(recognizedJson) {
       link = document.createElement('a');
       link.href = linkEditForm;
       link.target = "_blank";
-      link.textContent = "Edit form";
+      link.textContent = aiaLocalization.editForm;
 
       svgOutput.append(link);
     }
