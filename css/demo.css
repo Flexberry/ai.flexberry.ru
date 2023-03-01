@@ -51,39 +51,39 @@ a {
 }
 
 button {
-  cursor: pointer;
-  display: inline-block;
-  min-height: 1em;
-  outline: 0;
-  border: none;
-  vertical-align: baseline;
-  background: #ECF2FB none;
-  color: #3B4256;
-  font-family: 'GOSTUI2', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  margin: 0 0 1em 0;
-  padding: 0.78571429em 1.5em 0.78571429em;
-  text-transform: none;
-  text-shadow: none;
-  font-weight: 700;
-  line-height: 1.28571428em;
-  font-style: normal;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 0.28571429rem;
-  width: 100%;
-  -webkit-box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
-  box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-  transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-  transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
-  transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-  will-change: '';
-  -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #ECF2FB none;
+    color: #3B4256;
+    font-family: 'GOSTUI2', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 0 0 1em 0;
+    padding: 0.78571429em 1.5em 0.78571429em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1.28571428em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.28571429rem;
+    width: 100%;
+    -webkit-box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
+    box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    will-change: '';
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
@@ -155,12 +155,12 @@ textarea:focus {
   border-color: #62B0FF;
 }
 
-textarea.error {
+textarea.error, input.error {
   border-color: #e0b4b4;
   color: #9f3a38;
 }
 
-select {
+input {
   margin: 0 0 1em;
   width: 100%;
   outline: 0;

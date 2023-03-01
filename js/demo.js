@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
           insertLabel: "Введите текст",
           insertbutton: "Текст для анализа",
           analyzeButton: "Анализировать",
-          expectedResult: "Ожидаемый результат",
+          expectedResult: "Ваш e-mail",
+          emailError:"Поле e-mail обязательно для заполнения",
           opSVG: "Макеты форм",
           opClassDiagram: "UML диаграмма классов",
           opSQL: "SQL",
@@ -35,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
           textDescriptionAnalytic: "Flexberry AI Assistant обучен анализировать текстовые описания, которые бизнес-аналитик собирает в процессе общения с клиентами и исполнителями. ",
           textDescriptionAi: "Flexberry AI Assistant анализирует входной текст и отображает результат требуемого типа (макеты форм, UML диаграмма классов или скрипт SQL).",
           textRequest: "Мы развиваем наш продукт и он постепенно осваивает разные выражения. Проверим, найдём ли мы с вами общий язык уже сейчас или нам надо ещё немного поучиться?",
-          purchaseFormTitle: "Заявка на покупку"
+          purchaseFormTitle: "Заявка на покупку",
+          notRecognized: "Результат будет отправлен на указанный Вами адрес электронной почты."
       };
   }
   else {
@@ -45,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
           insertLabel: "Insert text here",
           insertbutton: "Text for analysis",
           analyzeButton: "Analyze",
-          expectedResult: "Choose expected result",
+          expectedResult: "Your e-mail",
+          emailError: "E-mail is required",
           opSVG: "Mockups of forms",
           opClassDiagram: "UML Class Diagram",
           opSQL: "SQL",
@@ -68,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
           textDescriptionAnalytic: "The AI Assistant is trained to analyze requirement specifications, and simple expressions that analysts gather from interacting with clients and stakeholders.",
           textDescriptionAi: "The AI analyzes this input text and displays an output based on user choice, either mockup forms, SQL, or UML diagrams.",
           textRequest: "We are developing our product to understand more and more. Let’s check if it can process your request. Or should it be trained more?",
-          purchaseFormTitle: "Purchase request"
+          purchaseFormTitle: "Purchase request",
+          notRecognized: "The results will be send to your e-mail."
       };
   }
 
@@ -79,9 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('txtareaInput').innerText = aiaLocalization.tryText;
   document.getElementById('btnSend').innerText = aiaLocalization.analyzeButton;
   document.getElementById('expectedResultLabel').innerText = aiaLocalization.expectedResult;
-  document.getElementById('opClassMockups').innerText = aiaLocalization.opSVG;
-  document.getElementById('opClassDiagram').innerText = aiaLocalization.opClassDiagram;
-  document.getElementById('opSQL').innerText = aiaLocalization.opSQL;
   document.getElementById('txtareaOutput').placeholder = aiaLocalization.txtareaOutput;
   document.getElementById('btnCopy').innerText = aiaLocalization.btnCopy;
   document.getElementById('btnBuy').innerText = aiaLocalization.btnBuy;
@@ -102,19 +103,29 @@ document.addEventListener('DOMContentLoaded', function () {
   let openPopupButtons = document.querySelectorAll('.open-popup'); // Кнопки для показа окна.
   let closePopupButton = document.querySelector('.close-popup'); // Кнопка для скрытия окна.
 
+  let validateEmail = function(valueToCheck) {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (valueToCheck != undefined && valueToCheck != null && valueToCheck.match(mailformat)) {
+          return true;
+      }
+      else {
+          return false;
+      }
+  }
+
 let fetchFunction = function(textToRecognize) {
   let textareaOutput = document.getElementById('txtareaOutput');
 
-    let licenseKey = 'd807b65a-440e-4728-a725-77455f20fc65';
-    let backend = 'https://ai-api.flexberry.net';
-    const svgOutput = document.getElementById('svgOutput');
+  let licenseKey = 'd807b65a-440e-4728-a725-77455f20fc65';
+  let backend = 'https://ai-api.flexberry.net';
+  const svgOutput = document.getElementById('svgOutput');
 
-    while (svgOutput.firstChild) {
-        svgOutput.removeChild(svgOutput.firstChild);
-    }
+  while (svgOutput.firstChild) {
+      svgOutput.removeChild(svgOutput.firstChild);
+  }
 
-    let textResult = document.getElementById('textResult');
-    textResult.classList.remove('hidden');
+  let textResult = document.getElementById('textResult');
+  textResult.classList.remove('hidden');
 
   if (textToRecognize == null || textToRecognize == undefined || textToRecognize == '') {
     textareaOutput.textContent = aiaLocalization.errorNoText;
@@ -122,18 +133,27 @@ let fetchFunction = function(textToRecognize) {
     return;
   }
 
-  let select = document.getElementById('dropExpectedResult');
-  let selectedValue = select.options[select.selectedIndex].value;
+  let emailAdressTxt = document.getElementById('txtEmail');
+  emailAdressTxt.classList.remove('error');
+  emailAdress = emailAdressTxt.value;
+  if (!validateEmail(emailAdress)) {
+      emailAdressTxt.classList.add('error');
+      textareaOutput.textContent = aiaLocalization.emailError;
+      textareaOutput.classList.add('error');
+      return;
+  }
 
   let myItem = {
     "textToRecognize": textToRecognize,
-    "expectedResult": selectedValue,
-    "key": licenseKey
+    "expectedResult": "opClassMockups",
+    "key": licenseKey,
+    "emailAdress": emailAdress
   };
 
   let dimmer = document.getElementById('dimmer');
   dimmer.classList.add('active');
-    let fullBackendAddress = `${backend}/api/aiassistant/GetRecognizion`;
+  let backendMethod = (typeof expectedBackendAdress === 'undefined') ? "GetMockupOfForms" : expectedBackendAdress;
+  let fullBackendAddress = `${backend}/api/aiassistant/${backendMethod}`;
   fetch(fullBackendAddress, {
     method: 'POST',
     headers: {
@@ -160,7 +180,13 @@ let fetchFunction = function(textToRecognize) {
           }
 
           textareaOutput.textContent = "";
-          if (selectedValue == 'opClassMockups') {
+          if (data["IsRecognized"] == false) {
+              textareaOutput.textContent = `${aiaLocalization.notRecognized}`;
+              textareaOutput.classList.add('error');
+              return;
+          }
+
+          if (typeof expectedResult === 'undefined') {
             localStorage.setItem("RecognizedJson", data["RecognizedJson"]);
             const recognizedJson = JSON.parse(data["RecognizedJson"]);
             svgOutputFunction(recognizedJson);
@@ -213,7 +239,7 @@ let copyFunction = function() {
   var purchaseCloseButton = document.getElementById('closePurchaseBtn');
   purchaseCloseButton.addEventListener('click', (e) => {
       popupBg.classList.remove('active'); // Убираем активный класс с фона.
-      popup.classList.remove('active'); // И с окна.
+      popup.classList.remove('active'); // И с окна
   });
 
   document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ.
