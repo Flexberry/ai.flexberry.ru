@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
               "Акт подключения составляется в двух экземплярах.Один экземпляр остаётся пользователю, второй экземпляр после внесения сведений в информационную систему мастер предоставляет в архив.Журнал архива содержит дату предоставления акта подключения, количество листов.Архивариус вносит сведения в информационную систему, где автоматически по номеру в журнал архива добавляется ссылка на акт подключения.",
           textDescription: "Flexberry AI Assistant – инструмент, который помогает облегчить рутинную работу бизнес-аналитика и других специалистов (например, дизайнера интерфейсов). ",
           textDescriptionAnalytic: "Flexberry AI Assistant обучен анализировать текстовые описания, которые бизнес-аналитик собирает в процессе общения с клиентами и исполнителями. ",
-          textDescriptionAi: "Flexberry AI Assistant анализирует входной текст и отображает результат требуемого типа (макеты форм, UML диаграмма классов или скрипт SQL).",
+          textDescriptionAi: "Flexberry AI Assistant анализирует входной текст и отображает результат требуемого типа (<a href='demo.html' target='_blank' >макеты форм</a>, " +
+              "<a href='demo_uml.html' target='_blank' >UML диаграмма классов</a> или <a href='demo_sql.html' target='_blank' >скрипт SQL</a>).",
           textRequest: "Мы развиваем наш продукт и он постепенно осваивает разные выражения. Проверим, найдём ли мы с вами общий язык уже сейчас или нам надо ещё немного поучиться?",
           purchaseFormTitle: "Заявка на покупку",
           notRecognized: "Результат будет отправлен на указанный Вами адрес электронной почты."
@@ -69,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
           tryText: "The client request includes the number, registration date, expected connection address. The client request refers to client information. The client information contains name, surname.",
           textDescription: "Flexberry AI Assistant is a virtual tool that is designed to assist the day-to-day activities of the business analyst and other specialists like UI/UX designers to generate forms, UML diagrams and SQL script in just a minute.",
           textDescriptionAnalytic: "The AI Assistant is trained to analyze requirement specifications, and simple expressions that analysts gather from interacting with clients and stakeholders.",
-          textDescriptionAi: "The AI analyzes this input text and displays an output based on user choice, either mockup forms, SQL, or UML diagrams.",
+          textDescriptionAi: "The AI analyzes this input text and displays an output based on user choice, either <a href='demo.html' target='_blank' >mockup forms</a>, " +
+              "<a href='demo_sql.html' target='_blank' >SQL</a>, or <a href='demo_uml.html' target='_blank' >UML diagrams</a>.",
           textRequest: "We are developing our product to understand more and more. Let’s check if it can process your request. Or should it be trained more?",
           purchaseFormTitle: "Purchase request",
           notRecognized: "The results will be send to your e-mail."
@@ -86,7 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('txtareaOutput').placeholder = aiaLocalization.txtareaOutput;
   document.getElementById('btnCopy').innerText = aiaLocalization.btnCopy;
   document.getElementById('btnBuy').innerText = aiaLocalization.btnBuy;
-  document.getElementById('plantUmlLink').innerText = aiaLocalization.plantUmlLink;
+  let plantUmlElement = document.getElementById('plantUmlLink');
+  if (plantUmlElement) {
+      plantUmlElement.innerText = aiaLocalization.plantUmlLink;
+  }
+
   document.getElementById('feedBackLink').innerText = aiaLocalization.feedBackLink;
   document.getElementById('textDescription').innerHTML = aiaLocalization.textDescription;
   document.getElementById('textDescriptionAnalytic').innerHTML = aiaLocalization.textDescriptionAnalytic;
@@ -100,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let popupBg = document.querySelector('.popup__bg'); // Фон попап окна.
   let popup = document.querySelector('.popup'); // Само окно.
-  let openPopupButtons = document.querySelectorAll('.open-popup'); // Кнопки для показа окна.
-  let closePopupButton = document.querySelector('.close-popup'); // Кнопка для скрытия окна.
 
   let validateEmail = function(valueToCheck) {
       var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
