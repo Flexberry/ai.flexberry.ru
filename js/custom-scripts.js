@@ -76,5 +76,11 @@
       $("#otherTxt").css("display", "block");
       setModalSendContent();
     });
+    document.querySelectorAll('.card-collapsible').forEach(card => {
+      card.addEventListener('click', function (e) {
+        if (e.target.classList.contains('show-more-btn')) return;
+        this.classList.toggle('open');
+      });
+    });
   });
 })();
