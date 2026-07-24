@@ -981,10 +981,10 @@ body.modal-open {
   color: #fff; }
 
 .about-section {
-  color: white;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px) repeat, linear-gradient(135deg, #710FD8 0%, #25D838 100%);
+  background: radial-gradient(circle, rgba(113, 15, 216, 0.15) 1px, transparent 1px) repeat, linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   background-size: 20px 20px, 100% 100%;
-  background-position: center center; }
+  background-position: center center;
+  color: #303434; }
 
 .about-section {
   z-index: 1; }
@@ -1279,3 +1279,29 @@ body.modal-open {
   color: #710FD8;
   font-weight: 500;
   line-height: 1.5; }
+
+/* Deployment section */
+#deployment {
+  background: radial-gradient(circle, rgba(113, 15, 216, 0.15) 1px, transparent 1px) repeat, linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background-size: 20px 20px, 100% 100%; }
+  #deployment .card {
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+  #deployment .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(113, 15, 216, 0.15);
+    border-color: #710FD8; }
+  #deployment .card-title {
+    color: #710FD8;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px; }
+  #deployment .card-text {
+    color: #303434;
+    line-height: 1.5; }
+  #deployment ul {
+    padding-left: 1.2rem;
+    list-style: none; }
+  #deployment ul li {
+    margin-bottom: 6px; }
